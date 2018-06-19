@@ -1,0 +1,5 @@
+maven command for test
+mvn -Dspring.profiles.active=dev -DskipTests clean compile spring-boot:run
+
+Swagger URL
+http://localhost:8001/ananda-line-service/swagger-ui.html#/
