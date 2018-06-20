@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import java.net.URLDecoder;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -40,7 +41,7 @@ public class MessagingController {
     public void lineWebHook(HttpServletRequest req) throws Exception {
 //        validationService.
         System.out.println("EVENT 2--- -"+req.getHeader("X-Line-Signature"));
-        System.out.println("EVENT 2--- -"+req);
+        System.out.println("EVENT 2--- -"+req.getReader().lines().collect(Collectors.joining(System.lineSeparator())));
     }
 
     

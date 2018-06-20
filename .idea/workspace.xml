@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a87f4303-a840-487f-b9e9-86684e6752e8" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ananda/service/ValidationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ananda/config/ConfigurationProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ananda/config/ConfigurationProperties.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ananda/controller/MessagingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ananda/controller/MessagingController.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -30,7 +27,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/ananda/controller/MessagingController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="459">
-              <caret line="42" column="45" selection-start-line="42" selection-start-column="45" selection-end-line="42" selection-end-column="45" />
+              <caret line="43" column="118" selection-start-line="43" selection-start-column="118" selection-end-line="43" selection-end-column="118" />
             </state>
           </provider>
         </entry>
@@ -434,7 +431,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/ananda/controller/MessagingController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="459">
-          <caret line="42" column="45" selection-start-line="42" selection-start-column="45" selection-end-line="42" selection-end-column="45" />
+          <caret line="43" column="118" selection-start-line="43" selection-start-column="118" selection-end-line="43" selection-end-column="118" />
         </state>
       </provider>
     </entry>
