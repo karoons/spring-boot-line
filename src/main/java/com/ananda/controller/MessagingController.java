@@ -6,6 +6,7 @@
 package com.ananda.controller;
 
 import com.ananda.service.ValidationService;
+import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpRequest;
@@ -41,7 +42,11 @@ public class MessagingController {
     public void lineWebHook(HttpServletRequest req) throws Exception {
 //        validationService.
         System.out.println("EVENT 2--- -"+req.getHeader("X-Line-Signature"));
+//        System.out.println("EVENT 2--- -"+req.getB
         System.out.println("EVENT 2--- -"+req.getReader().lines().collect(Collectors.joining(System.lineSeparator())));
+//        System.out.println("EVENT 2--- -"+req.getReader().lines().collect(Collectors.joining(System.lineSeparator())));
+        validationService.signatureValidation(req.getReader().lines().collect(Collectors.joining(System.lineSeparator())),req.getHeader("X-Line-Signature"));
+
     }
 
     

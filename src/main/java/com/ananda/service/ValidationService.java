@@ -14,15 +14,21 @@ public class ValidationService {
     @Autowired
     ConfigurationProperties configurationProperties;
 
-    public void signatureValidation(HttpServletRequest req) throws Exception{
+    public void signatureValidation(String requestBody,String xLineSignature) throws Exception{
         String channelSecret = configurationProperties.getLine_channel_secret();
         String channelAccessToken = configurationProperties.getLine_channel_access_token();
 
         SecretKeySpec key = new SecretKeySpec(channelSecret.getBytes(), "HmacSHA256");
         Mac mac = Mac.getInstance("HmacSHA256");
         mac.init(key);
-//        byte[] source = req.getBytes("UTF-8");
-//        String signature = Base64.encodeBase64String(mac.doFinal(source));
+        byte[] source = requestBody.getBytes("UTF-8");
+        String signature = Base64.encodeBase64String(mac.doFinal(source));
+        System.out.println("requestBody : "+requestBody);
+        System.out.println("signature : "+signature);
+        System.out.println("xLineSignature : "+xLineSignature);
+        if (signature.length() == xLineSignature.length()){
+            System.out.println("------ OK ------");
+        }
     }
 
 }
