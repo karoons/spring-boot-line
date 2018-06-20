@@ -14,37 +14,18 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ConfigurationProperties {
 
-//    @Value("${local.configuration.opcserver.file.location}")
-//    private String dcs_manual_convert_source_path;
+    private String line_channel_secret;
+    private String line_channel_access_token;
 
-//    @Value("${local.config.clound.aws.poolId}")
-//    private String awsPoolId;
-//    @Value("${local.config.clound.aws.clientAppId}")
-//    private String awsClientAppId;
-//    @Value("${local.config.clound.aws.federatedPoolId}")
-//    private String awsFederatedPoolId;
-//    @Value("${local.config.clound.aws.customDomain}")
-//    private String awsCustomDomain;
-//    @Value("${local.config.clound.aws.region}")
-//    private String awsRegion;
-//
-//    public String getAwsPoolId() {
-//        return awsPoolId;
-//    }
-//
-//    public String getAwsClientAppId() {
-//        return awsClientAppId;
-//    }
-//
-//    public String getAwsFederatedPoolId() {
-//        return awsFederatedPoolId;
-//    }
-//
-//    public String getAwsCustomDomain() {
-//        return awsCustomDomain;
-//    }
-//
-//    public String getAwsRegion() {
-//        return awsRegion;
-//    }
+    public String getLine_channel_secret() {
+        return "f59fefc3946ea3003f44ea2fbc97e9c3";
+    }
+
+    public String getLine_channel_access_token() {
+        return "p8xAMjTPGGaY3PmAT5k09gXWr880fP1jAenDN83C0JOzMmDTqBsWwiMJQ5pDogELxAwNyT+7eCzwfBFzbiqq1P6JD4+5kyw921NKUzamisQM9FbcGS0QzRetVfcZezmSPdAPvC7hRiMJgaWfW9qHZQdB04t89/1O/w1cDnyilFU=";
+    }
+
+    //    @Value("${local.configuration.opcserver.file.location}")
+    //    private String dcs_manual_convert_source_path;
+
 }

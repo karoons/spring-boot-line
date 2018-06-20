@@ -5,6 +5,8 @@
  */
 package com.ananda.controller;
 
+import com.ananda.service.ValidationService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
@@ -24,6 +26,9 @@ import java.net.URLDecoder;
 @RequestMapping("/api/messaging")
 public class MessagingController {
 
+    @Autowired
+    ValidationService validationService;
+
     @RequestMapping(value = "/your/ok", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
     @ResponseStatus(HttpStatus.OK)
     public Object currentStatus() throws Exception {
@@ -33,8 +38,9 @@ public class MessagingController {
     @RequestMapping(value = "/webhook", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
     @ResponseStatus(HttpStatus.OK)
     public void lineWebHook(HttpServletRequest req) throws Exception {
+//        validationService.
         System.out.println("EVENT 2--- -"+req.getHeader("X-Line-Signature"));
-//        return "this service is ok";
+        System.out.println("EVENT 2--- -"+req);
     }
 
     
