@@ -27,7 +27,10 @@ public class ValidationService {
         System.out.println("---signature : "+signature);
         System.out.println("---xLineSignature : "+xLineSignature);
         if (signature.length() == xLineSignature.length()){
-            System.out.println("------ OK ------");
+            System.out.println("------ size OK ------");
+        }
+        if (signature.equalsIgnoreCase(xLineSignature)){
+            System.out.println("------ contain OK ------");
         }
     }
 
