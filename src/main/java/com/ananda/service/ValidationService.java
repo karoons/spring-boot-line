@@ -23,9 +23,9 @@ public class ValidationService {
         mac.init(key);
         byte[] source = requestBody.getBytes("UTF-8");
         String signature = Base64.encodeBase64String(mac.doFinal(source));
-        System.out.println("requestBody : "+requestBody);
-        System.out.println("signature : "+signature);
-        System.out.println("xLineSignature : "+xLineSignature);
+        System.out.println("----requestBody : "+requestBody);
+        System.out.println("---signature : "+signature);
+        System.out.println("---xLineSignature : "+xLineSignature);
         if (signature.length() == xLineSignature.length()){
             System.out.println("------ OK ------");
         }

@@ -41,9 +41,9 @@ public class MessagingController {
     @ResponseStatus(HttpStatus.OK)
     public void lineWebHook(HttpServletRequest req) throws Exception {
 //        validationService.
-        System.out.println("EVENT 2--- -"+req.getHeader("X-Line-Signature"));
+//        System.out.println("EVENT 2--- -"+req.getHeader("X-Line-Signature"));
 //        System.out.println("EVENT 2--- -"+req.getB
-        System.out.println("EVENT 2--- -"+req.getReader().lines().collect(Collectors.joining(System.lineSeparator())));
+//        System.out.println("EVENT 2--- -"+req.getReader().lines().collect(Collectors.joining(System.lineSeparator())));
 //        System.out.println("EVENT 2--- -"+req.getReader().lines().collect(Collectors.joining(System.lineSeparator())));
         validationService.signatureValidation(req.getReader().lines().collect(Collectors.joining(System.lineSeparator())),req.getHeader("X-Line-Signature"));
 
