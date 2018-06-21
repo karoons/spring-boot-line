@@ -40,6 +40,7 @@ public class MessagingController {
     @RequestMapping(value = "/webhook", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
     @ResponseStatus(HttpStatus.OK)
     public void lineWebHook(HttpServletRequest req) throws Exception {
+        System.out.println("-- ");
 //        validationService.
 //        System.out.println("EVENT 2--- -"+req.getHeader("X-Line-Signature"));
 //        System.out.println("EVENT 2--- -"+req.getB
