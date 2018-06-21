@@ -56,6 +56,12 @@ public class LogicDevTest {
         }
     }
 
+    //mvn -Dspring.profiles.active=dev -Dtest=LogicDevTest#testConvertJsonToObject test
+    public void testConvertJsonToObject() throws Exception{
+        String jsonSource = "{\"events\":[{\"type\":\"message\",\"replyToken\":\"415df6b4f9314c9891584bebc1c899d2\",\"source\":{\"userId\":\"U8cb26dec1b63f8330a907078be249a7a\",\"type\":\"user\"},\"timestamp\":1529479523511,\"message\":{\"type\":\"text\",\"id\":\"8142284208664\",\"text\":\"การุณย์\"}}]}";
+
+    }
+
     public static void printMap(Map mp) {
         Iterator it = mp.entrySet().iterator();
         while (it.hasNext()) {
