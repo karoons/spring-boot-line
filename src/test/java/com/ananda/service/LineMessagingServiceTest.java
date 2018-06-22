@@ -25,9 +25,13 @@ public class LineMessagingServiceTest {
     //mvn -Dtest=LineMessagingServiceTest#testHandleMessage test
     @Test
     public void testHandleMessage() throws Exception{
-        String requestBody = "{\"events\":[{\"type\":\"message\",\"replyToken\":\"f51a5333e1e6459c9ca704522afb9de1\",\"source\":{\"userId\":\"U8cb26dec1b63f8330a907078be249a7a\",\"type\":\"user\"},\"timestamp\":1529652468822,\"message\":{\"type\":\"text\",\"id\":\"8152255593190\",\"text\":\"5555\"}}]}";
-        String xline = "Ump7qq8+7F1fey1ovicsDBUO6Zo2AZGiVn9ov7AXTYQ=";
-        lineMessagingService.handleMessage(requestBody,xline);
+       try{
+           String requestBody = "{\"events\":[{\"type\":\"message\",\"replyToken\":\"bda16f22f9574ffdae3d258a3e5cc8ac\",\"source\":{\"userId\":\"U8cb26dec1b63f8330a907078be249a7a\",\"type\":\"user\"},\"timestamp\":1529652468822,\"message\":{\"type\":\"text\",\"id\":\"8152255593190\",\"text\":\"5555\"}}]}";
+           String xline = "Ump7qq8+7F1fey1ovicsDBUO6Zo2AZGiVn9ov7AXTYQ=";
+           lineMessagingService.handleMessage(requestBody,xline);
+       }catch (Exception ex){
+           ex.printStackTrace();
+       }
 
     }
 
