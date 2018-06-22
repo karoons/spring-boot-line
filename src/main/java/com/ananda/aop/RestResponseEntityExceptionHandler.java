@@ -51,8 +51,8 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
 //
 //    }
 
-//    @ExceptionHandler(value = {IdpCognitoException.class})
-//    protected ResponseEntity<Object> handleIdpCognitoException(final IdpCognitoException ex, final WebRequest request) throws Exception {
+//    @ExceptionHandler(value = {LineException.class})
+//    protected ResponseEntity<Object> handleIdpCognitoException(final LineException ex, final WebRequest request) throws Exception {
 //        return new ResponseEntity(buildErrorResponse(ex.getClass().getName(),ex.getMessage(),""), HttpStatus.OK);
 //
 //    }

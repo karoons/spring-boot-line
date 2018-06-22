@@ -5,9 +5,11 @@
  */
 package com.ananda.controller;
 
+import com.ananda.service.LineMessagingService;
 import com.ananda.service.ValidationService;
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
@@ -31,6 +33,10 @@ public class MessagingController {
     @Autowired
     ValidationService validationService;
 
+    @Autowired
+    @Qualifier("CustomSdkLineMessagingService")
+    LineMessagingService lineMessagingService;
+
     @RequestMapping(value = "/your/ok", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
     @ResponseStatus(HttpStatus.OK)
     public Object currentStatus() throws Exception {
@@ -41,13 +47,7 @@ public class MessagingController {
     @ResponseStatus(HttpStatus.OK)
     public void lineWebHook(HttpServletRequest req) throws Exception {
         System.out.println("-- ");
-//        validationService.
-//        System.out.println("EVENT 2--- -"+req.getHeader("X-Line-Signature"));
-//        System.out.println("EVENT 2--- -"+req.getB
-//        System.out.println("EVENT 2--- -"+req.getReader().lines().collect(Collectors.joining(System.lineSeparator())));
-//        System.out.println("EVENT 2--- -"+req.getReader().lines().collect(Collectors.joining(System.lineSeparator())));
-        validationService.signatureValidation(req.getReader().lines().collect(Collectors.joining(System.lineSeparator())),req.getHeader("X-Line-Signature"));
-
+        lineMessagingService.handleMessage(req.getReader().lines().collect(Collectors.joining(System.lineSeparator())),req.getHeader("X-Line-Signature"));
     }
 
     

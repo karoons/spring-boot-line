@@ -31,11 +31,15 @@ public class TextMessageContent implements MessageContent {
      */
     private final String text;
 
+    private final String type;
+
     @JsonCreator
     public TextMessageContent(
             final String id,
-            final String text) {
+            final String text,
+            final String type) {
         this.id = id;
         this.text = text;
+        this.type = type;
     }
 }

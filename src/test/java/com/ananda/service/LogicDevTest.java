@@ -1,7 +1,12 @@
 package com.ananda.service;
 
 
+import com.ananda.model.event.MessageEvent;
+import com.ananda.model.event.message.TextMessageContent;
+import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -12,6 +17,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class LogicDevTest {
+
+//    @Autowired
+//    @Qualifier("JacksonJsonMapperService")
+//    JacksonJsonMapperService jacksonJsonMapperService;
+
+    @Autowired
+    ValidationService validationService;
+
+    @Autowired
+    @Qualifier("JacksonJsonMapperService")
+    JsonMapperService JsonMapperService;
 
 
     //mvn -Dspring.profiles.active=dev -Dtest=LogicDevTest#testConvertMapToObject test
@@ -56,10 +72,17 @@ public class LogicDevTest {
         }
     }
 
-    //mvn -Dspring.profiles.active=dev -Dtest=LogicDevTest#testConvertJsonToObject test
+    //mvn -Dtest=LogicDevTest#testConvertJsonToObject test -Dspring.profiles.active=dev
+    @Test
     public void testConvertJsonToObject() throws Exception{
         String jsonSource = "{\"events\":[{\"type\":\"message\",\"replyToken\":\"415df6b4f9314c9891584bebc1c899d2\",\"source\":{\"userId\":\"U8cb26dec1b63f8330a907078be249a7a\",\"type\":\"user\"},\"timestamp\":1529479523511,\"message\":{\"type\":\"text\",\"id\":\"8142284208664\",\"text\":\"การุณย์\"}}]}";
+        Map<String,Object> result =  JsonMapperService.fromJson(jsonSource, Map.class);
 
+        printMapDynamic(result);
+
+//        MessageEvent<TextMessageContent> ent = MessageEvent<;
+        MessageEvent<TextMessageContent> restponseData = JsonMapperService.fromJson(jsonSource,MessageEvent.class);
+//        System.out.println("--- "+restponseData.getReplyToken());
     }
 
     public static void printMap(Map mp) {

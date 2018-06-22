@@ -16,12 +16,17 @@ import javax.servlet.http.HttpServletRequest;
 
 @Service
 public class ValidationService {
+
     @Autowired
     ConfigurationProperties configurationProperties;
 
-    @Autowired
-    @Qualifier("jackSon")
-    ObjectMapper mapper;
+//    @Qualifier("JacksonJsonMapperService")
+//    @Autowired
+//    JacksonJsonMapperService jsonMapperService;
+
+    public ValidationService() {
+        this.configurationProperties = configurationProperties;
+    }
 
     public void signatureValidation(String requestBody, String xLineSignature) throws Exception {
         String channelSecret = configurationProperties.getLine_channel_secret();
@@ -40,8 +45,7 @@ public class ValidationService {
         if (signature.length() == xLineSignature.length()) {
             System.out.println("------ size OK ------");
 
-//            MessageEvent<TextMessageContent> restponseData
-//                    = jackson2ObjectMapperBuilder.
+//            MessageEvent<TextMessageContent> restponseData = jacksonJsonMapperService.fromJson(requestBody, MessageEvent.class);
 
 //            ObjectMapper
 

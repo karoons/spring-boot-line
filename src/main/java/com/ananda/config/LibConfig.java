@@ -9,10 +9,10 @@ import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 @Configuration
 public class LibConfig {
 
-    @Bean(name = "jackSon")
-    public ObjectMapper objectMapper() {
-        ObjectMapper mapper = new ObjectMapper();
-//        builder.serializationInclusion(JsonInclude.Include.NON_NULL);
-        return mapper;
-    }
+//    @Bean(name = "jackSon")
+//    public ObjectMapper objectMapper() {
+//        ObjectMapper mapper = new ObjectMapper();
+////        builder.serializationInclusion(JsonInclude.Include.NON_NULL);
+//        return mapper;
+//    }
 }

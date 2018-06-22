@@ -35,6 +35,8 @@ public class MessageEvent<T extends MessageContent> implements Event, ReplyEvent
      */
     private final String replyToken;
 
+    private final String type;
+
     /**
      * JSON object which contains the source of the event
      */
@@ -45,6 +47,7 @@ public class MessageEvent<T extends MessageContent> implements Event, ReplyEvent
      */
     private final T message;
 
+
     /**
      * Time of the event
      */
@@ -53,6 +56,7 @@ public class MessageEvent<T extends MessageContent> implements Event, ReplyEvent
     @JsonCreator
     public MessageEvent(
             final String replyToken,
+            final String type,
             final Source source,
             final T message,
             final Instant timestamp) {
@@ -60,6 +64,7 @@ public class MessageEvent<T extends MessageContent> implements Event, ReplyEvent
         this.source = source;
         this.message = message;
         this.timestamp = timestamp;
+        this.type = type;
     }
 
     @Override
