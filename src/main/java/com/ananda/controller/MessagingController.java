@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.net.URLDecoder;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -58,7 +59,7 @@ public class MessagingController {
 //    public void lineWebHook(HttpServletRequest req) throws Exception {
         public void lineWebHook(HttpServletRequest req,@RequestBody  Map<String,Object> input) throws Exception {
 //        System.out.println("-- test input -------"+input.get("events"));
-        printMap(input);
+        printMapDynamic(input);
         String json = req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
         System.out.println("----json------ "+json);
         lineMessagingService.handleMessage(json,req.getHeader("X-Line-Signature"));
@@ -70,6 +71,20 @@ public class MessagingController {
             Map.Entry pair = (Map.Entry) it.next();
             System.out.println(pair.getKey() + " = " + pair.getValue());
 //            it.remove(); // avoids a ConcurrentModificationException
+        }
+    }
+
+    public void printMapDynamic(Map mp) {
+        String typeName = "java.util.ArrayList";
+        Iterator it = mp.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry pair = (Map.Entry) it.next();
+            if (pair.getValue().getClass().getTypeName().equals(typeName)) {
+                for (Map<String, Object> _item : (ArrayList<Map<String, Object>>) pair.getValue()) {
+                    printMapDynamic(_item);
+                }
+            }
+            System.out.println(pair.getKey() + " = " + pair.getValue());
         }
     }
 
