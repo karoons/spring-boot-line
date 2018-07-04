@@ -55,8 +55,8 @@ public class MessagingController {
     @RequestMapping(value = "/webhook", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
     @ResponseStatus(HttpStatus.OK)
 //    public void lineWebHook(HttpServletRequest req) throws Exception {
-        public void lineWebHook(HttpServletRequest req,@RequestBody Map<String, Object> input) throws Exception {
-        System.out.println("-- test input "+input.toString());
+        public void lineWebHook(HttpServletRequest req) throws Exception {
+//        System.out.println("-- test input "+input.toString());
         lineMessagingService.handleMessage(req.getReader().lines().collect(Collectors.joining(System.lineSeparator())),req.getHeader("X-Line-Signature"));
     }
 
