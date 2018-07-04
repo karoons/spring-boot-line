@@ -58,7 +58,7 @@ public class MessagingController {
     @ResponseStatus(HttpStatus.OK)
 //    public void lineWebHook(HttpServletRequest req) throws Exception {
         public void lineWebHook(HttpServletRequest req,@RequestBody  Map<String,Object> input) throws Exception {
-        System.out.println("-- values of input -------"+input.values().size());
+//        System.out.println("-- values of input -------"+input.values().size());
 //        printMapDynamic(input);
 //        String json = req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
 //        System.out.println("----json------ "+json);
