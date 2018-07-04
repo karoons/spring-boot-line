@@ -21,7 +21,6 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- *
  * @author Karoons
  */
 @RestController
@@ -29,11 +28,12 @@ import java.util.stream.Collectors;
 public class AdvMessagingController {
 
     @PostMapping("/callback")
-    public void callback(@LineBotMessages List<Event> events) {
-//        System.out.println("------ "+events);
+//    public void callback(@LineBotMessages List<Event> events) {
+    public void callback(@RequestBody Map<String,Object> events) {
+        System.out.println("------ "+events);
 //        for (Event e:events) {
 //            System.out.println("-----------------------------"+e.getSource());
 //        }
     }
-    
+
 }

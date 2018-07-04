@@ -55,7 +55,7 @@ public class MessagingController {
     @RequestMapping(value = "/webhook", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
     @ResponseStatus(HttpStatus.OK)
 //    public void lineWebHook(HttpServletRequest req) throws Exception {
-        public void lineWebHook(HttpServletRequest req,Map<String,Object> input) throws Exception {
+        public void lineWebHook(HttpServletRequest req,@RequestBody  Map<String,Object> input) throws Exception {
         System.out.println("-- test input -------"+input.toString());
         String json = req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
         System.out.println("----json------ "+json);
