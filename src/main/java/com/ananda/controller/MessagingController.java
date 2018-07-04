@@ -13,13 +13,12 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.net.URLDecoder;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -43,10 +42,21 @@ public class MessagingController {
         return "this service is ok";
     }
 
+    @GetMapping(value = "header",produces = "application/json;charset=utf-8")
+    public Object getHeaderOfRequestor(HttpServletRequest req) throws Exception{
+        System.out.println("-------------------------  getHeaderOfRequestor---------");
+        System.out.println("------------------------- "+req);
+        Map<String,Object> response = new HashMap<>();
+        response.put("response","fdsfddd"+req.getContextPath());
+
+        return response;
+    }
+
     @RequestMapping(value = "/webhook", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
     @ResponseStatus(HttpStatus.OK)
-    public void lineWebHook(HttpServletRequest req) throws Exception {
-        System.out.println("-- test edit ");
+//    public void lineWebHook(HttpServletRequest req) throws Exception {
+        public void lineWebHook(HttpServletRequest req,@RequestBody Map<String, Object> input) throws Exception {
+        System.out.println("-- test input "+input.toString());
         lineMessagingService.handleMessage(req.getReader().lines().collect(Collectors.joining(System.lineSeparator())),req.getHeader("X-Line-Signature"));
     }
 

@@ -115,10 +115,6 @@ public class CustomSdkLineMessagingService implements LineMessagingService {
             soutce_userId = (String) sourceObject.get("userId");
         }
 
-//        System.out.println("------------ replyToken "+replyToken);
-//        System.out.println("------------ message_text "+message_text);
-//        System.out.println("------------ soutce_userId "+soutce_userId);
-
         JSONObject rootObject = new JSONObject();
         rootObject.put("replyToken", replyToken);
 
