@@ -13,8 +13,15 @@ import java.io.IOException;
 @Service("JacksonJsonMapperService")
 public class JacksonJsonMapperService implements JsonMapperService{
 
-    @Autowired
-    private ObjectMapper mapper;
+//    @Autowired
+//    private ObjectMapper mapper;
+
+    private final ObjectMapper mapper;
+
+    JacksonJsonMapperService(final ObjectMapper mapper) {
+        super();
+        this.mapper = checkNotNull(mapper);
+    }
 
     @Override
     public String toJson(final Object instance) throws IOException {

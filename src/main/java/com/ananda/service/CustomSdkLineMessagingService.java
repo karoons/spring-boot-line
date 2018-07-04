@@ -70,6 +70,11 @@ public class CustomSdkLineMessagingService implements LineMessagingService {
     }
 
     @Override
+    public void handleMessageByMap(Map<String, Object> requestBody, String xLineSignature) throws Exception {
+
+    }
+
+    @Override
     public boolean isRequestBodyFromLine(String requestBody, String xLineSignature) throws Exception {
         String channelSecret = configurationProperties.getLine_channel_secret();
 //        String channelAccessToken = configurationProperties.getLine_channel_access_token();
@@ -84,6 +89,11 @@ public class CustomSdkLineMessagingService implements LineMessagingService {
         } else {
             return false;
         }
+    }
+
+    @Override
+    public boolean isRequestBodyFromLineByMap(Map<String, Object> requestBody, String xLineSignature) throws Exception {
+        return false;
     }
 
 

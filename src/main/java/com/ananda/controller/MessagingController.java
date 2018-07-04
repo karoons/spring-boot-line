@@ -5,6 +5,7 @@
  */
 package com.ananda.controller;
 
+import com.ananda.service.JsonMapperService;
 import com.ananda.service.LineMessagingService;
 import com.ananda.service.ValidationService;
 import org.apache.commons.codec.binary.Base64;
@@ -38,6 +39,10 @@ public class MessagingController {
     @Qualifier("CustomSdkLineMessagingService")
     LineMessagingService lineMessagingService;
 
+    @Autowired
+    @Qualifier("JacksonJsonMapperService")
+    JsonMapperService jsonMapperService;
+
     @RequestMapping(value = "/your/ok", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
     @ResponseStatus(HttpStatus.OK)
     public Object currentStatus() throws Exception {
@@ -56,37 +61,16 @@ public class MessagingController {
 
     @RequestMapping(value = "/webhook", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
     @ResponseStatus(HttpStatus.OK)
-    public void lineWebHook(HttpServletRequest req) throws Exception {
+    public void lineWebHook(HttpServletRequest req, @RequestBody  Map<String,Object> input) throws Exception {
 //        public void lineWebHook(HttpServletRequest req,@RequestBody  Map<String,Object> input) throws Exception {
 //        System.out.println("-- values of input -------"+input.values().size());
 //        printMapDynamic(input);
 //        String json = req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
 //        System.out.println("----json------ "+json);
-        lineMessagingService.handleMessage(req.getReader().lines().collect(Collectors.joining(System.lineSeparator())),req.getHeader("X-Line-Signature"));
+//        lineMessagingService.handleMessage(req.getReader().lines().collect(Collectors.joining(System.lineSeparator())),req.getHeader("X-Line-Signature"));
+        lineMessagingService.handleMessage(jsonMapperService.toJson(input),req.getHeader("X-Line-Signature"));
     }
 
-    public void printMap(Map mp) {
-        Iterator it = mp.entrySet().iterator();
-        while (it.hasNext()) {
-            Map.Entry pair = (Map.Entry) it.next();
-            System.out.println(pair.getKey() + " = " + pair.getValue());
-//            it.remove(); // avoids a ConcurrentModificationException
-        }
-    }
-
-    public void printMapDynamic(Map mp) {
-        String typeName = "java.util.ArrayList";
-        Iterator it = mp.entrySet().iterator();
-        while (it.hasNext()) {
-            Map.Entry pair = (Map.Entry) it.next();
-            if (pair.getValue().getClass().getTypeName().equals(typeName)) {
-                for (Map<String, Object> _item : (ArrayList<Map<String, Object>>) pair.getValue()) {
-                    printMapDynamic(_item);
-                }
-            }
-            System.out.println(pair.getKey() + " = " + pair.getValue());
-        }
-    }
 
     
 }
