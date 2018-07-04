@@ -57,6 +57,7 @@ public class MessagingController {
 //    public void lineWebHook(HttpServletRequest req) throws Exception {
         public void lineWebHook(HttpServletRequest req,Map<String,Object> input) throws Exception {
         System.out.println("-- test input -------"+input.toString());
+        System.out.println("---------- "+req.getReader().readLine());
         lineMessagingService.handleMessage(req.getReader().lines().collect(Collectors.joining(System.lineSeparator())),req.getHeader("X-Line-Signature"));
     }
 
