@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.net.URLDecoder;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -56,11 +57,20 @@ public class MessagingController {
     @ResponseStatus(HttpStatus.OK)
 //    public void lineWebHook(HttpServletRequest req) throws Exception {
         public void lineWebHook(HttpServletRequest req,@RequestBody  Map<String,Object> input) throws Exception {
-        System.out.println("-- test input -------"+input);
+//        System.out.println("-- test input -------"+input.get("events"));
+        printMap(input);
         String json = req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
         System.out.println("----json------ "+json);
         lineMessagingService.handleMessage(json,req.getHeader("X-Line-Signature"));
     }
+
+    public void printMap(Map mp) {
+        Iterator it = mp.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry pair = (Map.Entry) it.next();
+            System.out.println(pair.getKey() + " = " + pair.getValue());
+//            it.remove(); // avoids a ConcurrentModificationException
+        }
 
     
 }
